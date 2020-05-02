@@ -1,0 +1,19 @@
+
+.sidebar{
+    font-size: 1.75rem;
+
+}
+.sidebar:hover{
+  cursor: pointer;
+}
+.Dsidebar{
+  z-index: 99;
+}
+
+@media (max-width: 1024px){
+  .Dsidebar{
+      position: fixed;
+      height: 100%;
+  }
+
+}

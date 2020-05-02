@@ -1,0 +1,35 @@
+[nbButton] {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .control-panel {
+    padding: 2rem;
+  }
+  .cardside{
+    height: 92% !important;
+  }
+
+:host /deep/ .flip-button  {
+  color: white;
+  z-index: 0;
+  margin-bottom: 20%;
+
+  }
+  .card{
+    background-color: transparent !important;
+    border: none;
+  }
+.outSideCard{
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+.row{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
