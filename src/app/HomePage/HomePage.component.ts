@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
   }
 
   menuItems = ["motasem","home "];
-
+  data:[]
   private destroy$ = new Subject<void>();
   selectedItem: string;
 

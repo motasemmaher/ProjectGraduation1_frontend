@@ -3,7 +3,7 @@ import { NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router'
-import { UserApiService } from '../Services/userApi.service';
+import { UserApiService } from '../Services/user/userApi.service';
 import {ChatComponent} from '../shared/Chat/Chat.component'
 @Component({
   selector: 'app-Header',
@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(title => {
         if (title == 'Logout') {
           this.router.navigate(['/auth/logout'])
+          this.IscontactSelected = false;
         }
       });
     this.authService.onTokenChange()

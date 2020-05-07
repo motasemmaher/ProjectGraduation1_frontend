@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomePageComponent} from './HomePage/HomePage.component'
-import { RegisterComponent } from './Register/Register.component';
+import { HomePageComponent } from './HomePage/HomePage.component'
+import { StoreComponent } from './Store/Store.component'
+import { RegisterComponent } from "./RegisterStore/RegisterComponent";
 
 import {
   NbAuthComponent,
@@ -15,11 +16,15 @@ import {
 export const routes: Routes = [
   // ... 
   {
-    path:'homepage',
-    component:HomePageComponent
+    path: 'homepage',
+    component: HomePageComponent
   },
   {
-    
+    path: 'store',
+    component: StoreComponent
+  },
+  {
+
     path: 'auth',
     component: NbAuthComponent,
     children: [
@@ -27,6 +32,10 @@ export const routes: Routes = [
       //   path: '',
       //   component: LoginComponent,
       // },
+      {
+        path: 'store/register',
+        component: RegisterComponent
+      },
       {
         path: 'login',
         component: NbLoginComponent,

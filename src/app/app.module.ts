@@ -5,17 +5,21 @@ import { HeaderComponent } from './Header/Header.component';
 import { HomePageComponent } from './HomePage/HomePage.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SideBarComponent } from './SideBar/SideBar.component'
-import { NbThemeModule, NbChatModule, NbListModule, NbMenuService, NbSidebarModule, NbContextMenuModule, NbSidebarService, NbCardModule, NbMenuModule, NbLayoutModule, NbButtonModule, NbIconModule, NbSearchModule, NbActionsModule, NbSelectModule, NbUserModule } from '@nebular/theme';
+import { NbThemeModule,NbCheckboxModule,NbAlertModule ,NbStepperModule, NbInputModule, NbListModule, NbMenuService, NbSidebarModule, NbContextMenuModule, NbSidebarService, NbCardModule, NbMenuModule, NbLayoutModule, NbButtonModule, NbIconModule, NbSearchModule, NbActionsModule, NbSelectModule, NbUserModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import "@angular/compiler";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken } from '@nebular/auth';
-import { RegisterComponent } from './Register/Register.component';
+import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken,NbAuthToken, NbTokenService } from '@nebular/auth';
+import { RegisterComponent } from "./RegisterStore/RegisterComponent";
 import { AppComponent } from './app.component';
-import { UserApiService } from './Services/userApi.service'
 import { SharedModule } from './shared/shared.module'
-import { ChatComponent } from './shared/Chat/Chat.component'
+import { StoreComponent } from './Store/Store.component'
+import { FileUploadModule } from 'ng2-file-upload';
+import { FormsModule } from '@angular/forms';
+import { UserApiService } from './Services/user/userApi.service'
+
+
 
 @NgModule({
    declarations: [
@@ -24,10 +28,17 @@ import { ChatComponent } from './shared/Chat/Chat.component'
       HomePageComponent,
       SideBarComponent,
       RegisterComponent,
-      ChatComponent
+      StoreComponent
+
    ],
    imports: [
-      NbChatModule,
+      FormsModule,
+      FileUploadModule,
+      NbAlertModule,
+      NbCheckboxModule,
+      NbButtonModule,
+      NbStepperModule,
+      NbInputModule,
       NbListModule,
       BrowserModule,
       AppRoutingModule,
@@ -52,9 +63,10 @@ import { ChatComponent } from './shared/Chat/Chat.component'
          strategies: [
             NbPasswordAuthStrategy.setup({
                name: 'email',
+               
                baseEndpoint: "http://localhost:4445/user",
                login: {
-                  endpoint: "/v-login",
+                  endpoint: "/login",
                   redirect: {
                      success: '/homepage',
                      failure: null
@@ -79,6 +91,7 @@ import { ChatComponent } from './shared/Chat/Chat.component'
                   key: 'token', // this parameter tells where to look for the token
                },
             }),
+
          ],
          forms: {},
       }),
@@ -87,7 +100,8 @@ import { ChatComponent } from './shared/Chat/Chat.component'
    providers: [
       NbSidebarService,
       NbMenuService,
-      UserApiService
+      UserApiService,
+      NbTokenService
    ],
    bootstrap: [
       AppComponent

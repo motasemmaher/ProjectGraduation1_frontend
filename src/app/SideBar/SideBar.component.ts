@@ -60,6 +60,7 @@ export class SideBarComponent implements OnInit {
       expanded: true,
       children: [
         {
+          link:'store',
           title: 'All',
         },
         {

@@ -25,11 +25,11 @@ export class ChatService {
   }
 
   public sendMessage(message) {
-    if (this.user.user.username > message.user.name) {
-      this.socket.emit(this.user.user.username + "-" + message.user.name, message);
+    if (this.user.user.username > message.user.receiver) {
+      this.socket.emit(this.user.user.username + "-" + message.user.receiver, message);
 
     } else {
-      this.socket.emit(message.user.name + "-" + this.user.user.username, message);
+      this.socket.emit(message.user.receiver + "-" + this.user.user.username, message);
     }
   }
 

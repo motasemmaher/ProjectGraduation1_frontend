@@ -33,6 +33,6 @@
     </div>
 </div>
 
-<div class="chat">
+<div class="chat" *ngIf="isLogin">
     <app-Chat [contact]="contactSelected" [ContactsList]="usernames" [username]="user.user.username" *ngIf="IscontactSelected"></app-Chat>
 </div>
