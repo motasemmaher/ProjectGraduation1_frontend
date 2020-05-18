@@ -20,6 +20,8 @@ export class UserApiService {
     return this.http.get(this.url + "v-contact/" + ownusernameId).pipe(catchError(this.error))
   }
 
+  
+
   private error(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

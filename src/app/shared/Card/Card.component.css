@@ -1,0 +1,22 @@
+.card {
+    background-color: transparent !important;
+    border: none;
+    margin-left: 3%;
+}
+
+:host /deep/ .flip-button {
+    color: white;
+    z-index: 0;
+    margin-bottom: 20%;
+}
+
+.cardside {
+    height: 92% !important;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}

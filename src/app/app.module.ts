@@ -10,14 +10,16 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import "@angular/compiler";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken,NbAuthToken, NbTokenService } from '@nebular/auth';
-import { RegisterComponent } from "./RegisterStore/RegisterComponent";
+import { NbPasswordAuthStrategy, NbAuthModule, NbAuthJWTToken, NbTokenService } from '@nebular/auth';
+import { RegisterGarageOwner } from "./RegisterGarageOwner/RegisterGarageOwner.component";
+import { RegisterCarOwner } from "./RegisterCarOwner/RegisterCarOwner.component";
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module'
-import { StoreComponent } from './Store/Store.component'
+import { StoreModule } from './store/store.module'
 import { FileUploadModule } from 'ng2-file-upload';
 import { FormsModule } from '@angular/forms';
 import { UserApiService } from './Services/user/userApi.service'
+// import { StoreAPIService } from './Services/store/storeAPI.service'
 
 
 
@@ -27,11 +29,12 @@ import { UserApiService } from './Services/user/userApi.service'
       HeaderComponent,
       HomePageComponent,
       SideBarComponent,
-      RegisterComponent,
-      StoreComponent
+      RegisterGarageOwner,
+      RegisterCarOwner
 
    ],
    imports: [
+      StoreModule,
       FormsModule,
       FileUploadModule,
       NbAlertModule,
@@ -105,6 +108,9 @@ import { UserApiService } from './Services/user/userApi.service'
    ],
    bootstrap: [
       AppComponent
+   ],
+   exports:[
+      SharedModule
    ]
 })
 export class AppModule { }

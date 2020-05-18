@@ -1,4 +1,6 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Pipe } from '@angular/core';
+import { Router } from '@angular/router'
+
 
 @Component({
   selector: 'app-Card',
@@ -7,10 +9,15 @@ import { Component, OnInit,Input } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
   @Input()data :[];
 
   ngOnInit() {
   }
+
+  onViewStore(storeId){
+    this.router.navigateByUrl(`/store/${storeId}`)
+  }
+
 
 }

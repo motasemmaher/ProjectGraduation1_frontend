@@ -8,10 +8,14 @@ import { catchError, retry, map } from 'rxjs/operators';
 export class AuthServiceService {
 
   constructor(private http: HttpClient) { }
-
+  baseUrl = "http://localhost:4445/user"
 
   createGarageOwner(user: any, store: any) {
-    return this.http.post("http://localhost:4445/user/garage-owner/create", { user: user, store: store }).pipe(catchError(this.error))
+    return this.http.post(`${this.baseUrl}/garage-owner/create`, { user: user, store: store }).pipe(catchError(this.error))
+
+  }
+  createCarOwner(user: any, car: any) {
+    return this.http.post(`${this.baseUrl}/car-owner/create`, { user: user, car: car }).pipe(catchError(this.error))
 
   }
   private error(error: HttpErrorResponse) {

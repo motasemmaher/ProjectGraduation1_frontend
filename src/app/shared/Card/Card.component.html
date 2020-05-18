@@ -1,14 +1,14 @@
-<div class="row">
+<div class="row cards">
     <div style="width: 18rem;" class="outSideCard" *ngFor="let element of data">
         <nb-flip-card class="card">
             <nb-card-front>
                 <nb-card accent={{element.accent}} class="cardside">
                     <nb-card-body>
-                        <img src="assets/image/3185382.jpg" class="card-img-top" alt="...">
+                        <img [src]="element.image" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-white">{{element.name}}</h5>
                             <p class="card-text text-white">{{element.price}}</p>
-                            <button class="btn btn-primary text-white">{{element.btn}}</button>
+                            <button class="btn btn-primary text-white" (click)="onViewStore(element.id)">{{element.btn}}</button>
                         </div>
                     </nb-card-body>
                 </nb-card>
@@ -16,7 +16,10 @@
             <nb-card-back>
                 <nb-card class="cardside">
                     <nb-card-body>
-                        {{element.description}}
+                        {{element.description | description: 250}}<br>
+                        <span *ngIf="element.description.length > 250">
+                            <a href="/store/{{element.id}}">...see more</a>
+                        </span>
                     </nb-card-body>
                 </nb-card>
             </nb-card-back>

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomePageComponent } from './HomePage/HomePage.component'
-import { StoreComponent } from './Store/Store.component'
-import { RegisterComponent } from "./RegisterStore/RegisterComponent";
+import { RegisterGarageOwner } from "./RegisterGarageOwner/RegisterGarageOwner.component";
+import { RegisterCarOwner } from "./RegisterCarOwner/RegisterCarOwner.component";
 
 import {
   NbAuthComponent,
@@ -20,8 +20,7 @@ export const routes: Routes = [
     component: HomePageComponent
   },
   {
-    path: 'store',
-    component: StoreComponent
+    path: 'store', loadChildren: () => import('./store/store.module').then(m => m.StoreModule) 
   },
   {
 
@@ -33,8 +32,12 @@ export const routes: Routes = [
       //   component: LoginComponent,
       // },
       {
-        path: 'store/register',
-        component: RegisterComponent
+        path: 'garage-owner/register',
+        component: RegisterGarageOwner
+      },
+      {
+        path: 'car-owner/register',
+        component: RegisterCarOwner
       },
       {
         path: 'login',
