@@ -1,0 +1,229 @@
+<form ngForm (ngSubmit)="register()" #form="ngForm" aria-labelledby="title">
+
+    <nb-stepper orientation="horizontal">
+        <nb-step label="Step-1">
+            <ng-template #labelOne>User Information</ng-template>
+            <h4>User Information</h4>
+            <div class="form-control-group">
+                <label class="label" for="input-username">Username:</label>
+                <input nbInput fullWidth autofocus [(ngModel)]="user.username" #username="ngModel" name="username" type="text" id="input-username" pattern="^[a-zA-Z0-9]+$" placeholder="Username" fieldSize="large" [status]="username.dirty ? (username.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="8" [maxlength]="64" [attr.aria-invalid]="username.invalid && username.touched ? true : null">
+                <ng-container *ngIf="username.invalid && username.touched ">
+                    <p class="caption status-danger" *ngIf="username.errors?.required">
+                        Username is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="username.errors?.minlength || username.errors?.maxlength">
+                        Username should contain from 8 to 64 characters
+                    </p>
+
+                    <p class="caption status-danger" *ngIf="username.errors?.pattern">
+                        username should only has valid chars!
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-name">Full Name:</label>
+                <input nbInput fullWidth [(ngModel)]="user.name" #name="ngModel" name="name" type="text" id="input-name" pattern="^[a-zA-Z_-\s]+$" placeholder="Full Name" fieldSize="large" [status]="name.dirty ? (name.invalid  ? 'danger' : 'success') : 'basic'" [required]="true"
+                    [minlength]="8" [maxlength]="64" [attr.aria-invalid]="name.invalid && name.touched ? true : null">
+                <ng-container *ngIf="name.invalid && name.touched ">
+                    <p class="caption status-danger" *ngIf="name.errors?.required">
+                        Full Name is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="name.errors?.minlength || name.errors?.maxlength">
+                        Full Name should contain from 8 to 64 characters
+                    </p>
+                    <p class="caption status-danger" *ngIf="name.errors?.pattern">
+                        Full Name should be the real one!
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-email">Email address:</label>
+                <input nbInput fullWidth [(ngModel)]="user.email" #email="ngModel" type="email" name="email" id="input-email" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$" placeholder="Email address" fieldSize="large" [status]="email.dirty ? (email.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [attr.aria-invalid]="email.invalid && email.touched ? true : null">
+                <ng-container *ngIf="email.invalid && email.touched">
+                    <p class="caption status-danger" *ngIf="email.errors?.required">
+                        Email is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="email.errors?.pattern">
+                        Email should be the real one!
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-password">Password:</label>
+                <input nbInput fullWidth [(ngModel)]="user.password" #password="ngModel" name="password" type="password" id="input-password" placeholder="Password" fieldSize="large" [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : 'basic'" [required]="true"
+                    [minlength]="8" [maxlength]="64" [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+                <ng-container *ngIf="password.invalid && password.touched ">
+                    <p class="caption status-danger" *ngIf="password.errors?.required">
+                        Password is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+                        Password should contain from 8 to 64 characters
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-phonenumber">Phone Number:</label>
+                <input nbInput fullWidth [(ngModel)]="user.phonenumber" #phonenumber="ngModel" name="phonenumber" type="text" id="input-phonenumber" placeholder="Phone Number" pattern="^07\d+" fieldSize="large" [status]="phonenumber.dirty ? (phonenumber.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="10" [maxlength]="10" [attr.aria-invalid]="phonenumber.invalid && phonenumber.touched ? true : null">
+                <ng-container *ngIf="phonenumber.invalid && phonenumber.touched">
+                    <p class="caption status-danger" *ngIf="phonenumber.errors?.required">
+                        Phone number is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="phonenumber.errors?.minlength || phonenumber.errors?.maxlength">
+                        Phone number should contain 10 characters
+                    </p>
+
+                    <p class="caption status-danger" *ngIf="phonenumber.errors?.pattern">
+                        Phone number should be start with 07 or valid numbers
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-location">Location:</label><br>
+                <nb-select placeholder="Select location" name="location" [(ngModel)]="user.location" required>
+                    <nb-option value="Ajloun">Ajloun</nb-option>
+                    <nb-option value="Aqaba">Aqaba</nb-option>
+                    <nb-option value="Amman">Amman</nb-option>
+                    <nb-option value="Balqa">Balqa</nb-option>
+                    <nb-option value="Irbid">Irbid</nb-option>
+                    <nb-option value="Jerash">Jerash</nb-option>
+                    <nb-option value="Karak">Karak</nb-option>
+                    <nb-option value="Ma'an">Ma'an</nb-option>
+                    <nb-option value="Madaba">Madaba</nb-option>
+                    <nb-option value="Mafraq">Mafraq</nb-option>
+                    <nb-option value="Tafilah">Tafilah</nb-option>
+                    <nb-option value="Zarqa">Zarqa</nb-option>
+                </nb-select>
+            </div>
+            <br>
+
+            <div class="btn">
+                <button nbButton disabled nbStepperPrevious>prev</button>
+                <button nbButton nbStepperNext>next</button>
+            </div>
+        </nb-step>
+
+        <nb-step label="Step-2">
+            <ng-template #labelOne>Store Information</ng-template>
+            <h4>Store Information</h4>
+            <div class="form-control-group">
+                <label class="label" for="input-name-store">Store Name:</label>
+                <input nbInput fullWidth [(ngModel)]="store.name" #storename="ngModel" name="name" type="text" id="input-name-store" pattern="[A-Za-z_-\s]+" placeholder="Store Name" fieldSize="large" [status]="storename.dirty ? (storename.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="8" [maxlength]="64" [attr.aria-invalid]="storename.invalid && storename.touched ? true : null">
+                <ng-container *ngIf="storename.invalid && storename.touched ">
+                    <p class="caption status-danger" *ngIf="storename.errors?.required">
+                        Store Name is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="storename.errors?.minlength || storename.errors?.maxlength">
+                        Store Name should contain from 8 to 64 characters
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-location">Location:</label><br>
+                <nb-select placeholder="Select location" name="location" [(ngModel)]="store.location" name="location" required>
+                    <nb-option value="Ajloun">Ajloun</nb-option>
+                    <nb-option value="Aqaba">Aqaba</nb-option>
+                    <nb-option value="Amman">Amman</nb-option>
+                    <nb-option value="Balqa">Balqa</nb-option>
+                    <nb-option value="Irbid">Irbid</nb-option>
+                    <nb-option value="Jerash">Jerash</nb-option>
+                    <nb-option value="Karak">Karak</nb-option>
+                    <nb-option value="Ma'an">Ma'an</nb-option>
+                    <nb-option value="Madaba">Madaba</nb-option>
+                    <nb-option value="Mafraq">Mafraq</nb-option>
+                    <nb-option value="Tafilah">Tafilah</nb-option>
+                    <nb-option value="Zarqa">Zarqa</nb-option>
+                </nb-select>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-open-time">Open Time:</label>
+                <input nbInput fullWidth [(ngModel)]="store.opentime" #opentime="ngModel" name="opentime" type="text" id="input-open-time" pattern="^[01][0-9]:[0-6][0-9]\s[AaPp][Mm]$" placeholder="HH:MM am or pm" fieldSize="large" [status]="opentime.dirty ? (opentime.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="8" [maxlength]="8" [attr.aria-invalid]="opentime.invalid && opentime.touched ? true : null">
+                <ng-container *ngIf="opentime.invalid && opentime.touched ">
+                    <p class="caption status-danger" *ngIf="opentime.errors?.required">
+                        Open Time is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="opentime.errors?.minlength || opentime.errors?.maxlength">
+                        Open Time should contain 8 characters
+                    </p>
+                    <p class="caption status-danger" *ngIf="opentime.errors?.pattern ">
+                        Open Time should be like this (HH:MM am or pm) ex- 12:30 am
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-Close-time">Close Time:</label>
+                <input nbInput fullWidth [(ngModel)]="store.closetime" #closetime="ngModel" name="closetime" type="text" id="input-Close-time" pattern="^[01][0-9]:[0-6][0-9]\s[AaPp][Mm]$" placeholder="HH:MM am or pm" fieldSize="large" [status]="closetime.dirty ? (closetime.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="8" [maxlength]="8" [attr.aria-invalid]="closetime.invalid && closetime.touched ? true : null">
+                <ng-container *ngIf="closetime.invalid && closetime.touched ">
+                    <p class="caption status-danger" *ngIf="closetime.errors?.required">
+                        Close Time is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="closetime.errors?.minlength || closetime.errors?.maxlength">
+                        Close Time should contain 8 characters
+                    </p>
+                    <p class="caption status-danger" *ngIf="closetime.errors?.pattern ">
+                        Close Time should be like this (HH:MM am or pm) ex- 12:30 am
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-address">Address:</label>
+                <input nbInput fullWidth [(ngModel)]="store.address" #address="ngModel" name="address" type="text" id="input-address" pattern="[A-Za-z_-\s]+" placeholder="Address" fieldSize="large" [status]="address.dirty ? (address.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="4" [maxlength]="64" [attr.aria-invalid]="address.invalid && address.touched ? true : null">
+                <ng-container *ngIf="address.invalid && address.touched ">
+                    <p class="caption status-danger" *ngIf="address.errors?.required">
+                        Address is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="address.errors?.minlength || address.errors?.maxlength">
+                        Address should contain from 8 to 64 characters
+                    </p>
+                    <p class="caption status-danger" *ngIf="address.errors?.pattern ">
+                        Address has invalid chars
+                    </p>
+                </ng-container>
+            </div>
+            <div class="form-control-group">
+                <label class="label" for="input-description">Description:</label>
+                <textarea nbInput fullWidth [(ngModel)]="store.description" #description="ngModel" name="storedescription" id="input-description" placeholder="Description" fieldSize="large" [status]="description.dirty ? (description.invalid  ? 'danger' : 'success') : 'basic'"
+                    [required]="true" [minlength]="8" [maxlength]="1000" [attr.aria-invalid]="description.invalid && description.touched ? true : null"></textarea>
+                <ng-container *ngIf="description.invalid && description.touched ">
+                    <p class="caption status-danger" *ngIf="description.errors?.required">
+                        Description is required!
+                    </p>
+                    <p class="caption status-danger" *ngIf="description.errors?.minlength || description.errors?.maxlength">
+                        Description should contain from 8 to 100 characters
+                    </p>
+                </ng-container>
+            </div>
+            <div class="btn">
+                <button nbButton nbStepperPrevious>prev</button>
+                <button nbButton nbStepperNext>next</button>
+            </div>
+        </nb-step>
+        <nb-step label="Step-3">
+            <ng-template #labelOne>Conformation</ng-template>
+            <h4>Conformation</h4>
+
+            <div class="form-control-group accept-group">
+                <nb-checkbox name="terms" [(ngModel)]="user.terms" [required]="true">
+                    Agree to <a href="#" target="_blank"><strong>Terms & Conditions</strong></a>
+                </nb-checkbox>
+            </div>
+
+            <br>
+            <button nbButton status="primary" size="large" type="submit" [disabled]="!form.valid || submitted" [class.btn-pulse]="submitted">
+                Create
+               </button>
+            <div class="btn">
+                <button nbButton nbStepperPrevious>prev</button>
+                <button nbButton disabled nbStepperNext>next</button>
+            </div>
+
+        </nb-step>
+
+    </nb-stepper>
+</form>

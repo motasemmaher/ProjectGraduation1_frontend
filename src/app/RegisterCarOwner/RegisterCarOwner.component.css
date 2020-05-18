@@ -1,0 +1,11 @@
+.btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn button {
+    width: 20%;
+    margin: 1%;
+}
