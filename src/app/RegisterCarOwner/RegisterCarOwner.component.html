@@ -65,7 +65,7 @@
             </div>
             <div class="form-control-group">
                 <label class="label" for="input-phonenumber">Phone Number:</label>
-                <input nbInput fullWidth [(ngModel)]="user.phonenumber" #phonenumber="ngModel" name="phonenumber" type="text" id="input-phonenumber" placeholder="Phone Number" pattern="^07\d+" fieldSize="large" [status]="phonenumber.dirty ? (phonenumber.invalid  ? 'danger' : 'success') : 'basic'"
+                <input nbInput fullWidth [(ngModel)]="user.phonenumber" #phonenumber="ngModel" name="phonenumber" type="text" id="input-phonenumber" placeholder="Phone Number" pattern="^07[789]\d+" fieldSize="large" [status]="phonenumber.dirty ? (phonenumber.invalid  ? 'danger' : 'success') : 'basic'"
                     [required]="true" [minlength]="10" [maxlength]="10" [attr.aria-invalid]="phonenumber.invalid && phonenumber.touched ? true : null">
                 <ng-container *ngIf="phonenumber.invalid && phonenumber.touched">
                     <p class="caption status-danger" *ngIf="phonenumber.errors?.required">
@@ -76,7 +76,7 @@
                     </p>
 
                     <p class="caption status-danger" *ngIf="phonenumber.errors?.pattern">
-                        Phone number should be start with 07 or valid numbers
+                        Phone number should be start with 077, 078, 079 or valid numbers
                     </p>
                 </ng-container>
             </div>

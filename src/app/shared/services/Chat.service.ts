@@ -2,45 +2,33 @@ import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable, throwError } from 'rxjs';
 import { Message } from '../../../model/Message';
-import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
-import { HttpClient, HttpRequest, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { catchError, retry, map } from 'rxjs/operators';
-import { element } from 'protractor';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  user: any = {}
-  constructor(private http: HttpClient, private socket: Socket, private authService: NbAuthService) {
-    this.authService.onTokenChange()
-      .subscribe((token: NbAuthJWTToken) => {
-        if (token.isValid()) {
-          this.user = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable 
-        }
-      });
-
-
+  constructor(private http: HttpClient, private socket: Socket) {
   }
 
-  public sendMessage(message) {
-    if (this.user.user.username > message.user.receiver) {
-      this.socket.emit(this.user.user.username + "-" + message.user.receiver, message);
+  public sendMessage(message,userId,contactID) {
+    if (userId > contactID) {
+      this.socket.emit(userId + "-" + contactID, message);
 
     } else {
-      this.socket.emit(message.user.receiver + "-" + this.user.user.username, message);
+      this.socket.emit(contactID + "-" + userId, message);
     }
   }
 
-  public getLiveMessage = (contacts): Observable<any> => {   
+  public getLiveMessage = (contacts,user): Observable<any> => {   
     return Observable.create((observer) => {
       contacts.forEach(element => {
         let chatbetweem = ""
-        if (this.user.user.username > element) {
-          chatbetweem = this.user.user.username + "-" + element
+        if (user._id > element.id) {
+          chatbetweem = user._id + "-" + element.id
         } else {
-          chatbetweem = element + "-" + this.user.user.username
+          chatbetweem = element.id + "-" + user._id
         }
         this.socket.on(chatbetweem, (message) => {
           observer.next(message);
@@ -49,8 +37,8 @@ export class ChatService {
     });
   }
 
-  getMessages(contactID,user) {
-    let url ="http://localhost:4445/user/chat/"+contactID+"/"+user
+  getMessages(userId,contactID) {
+    let url ="http://localhost:4445/user/chat/"+contactID+"/"+userId
     return this.http.get(url)
 
   }

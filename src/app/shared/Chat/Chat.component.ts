@@ -10,9 +10,9 @@ import { element } from 'protractor';
   styleUrls: ['./Chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  @Input() contact: { name: string, title: string };
-  @Input() ContactsList: [];
-  @Input() username: string;
+  @Input() contact: { name: string, title: string,id:string };
+  @Input() ContactsList: any[];
+  @Input() user: any;
 
   messages: any = [];
   constructor(private chat: ChatService) {
@@ -20,11 +20,11 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chat.getLiveMessage(this.ContactsList).subscribe((message) => {
+    this.chat.getLiveMessage(this.ContactsList,this.user).subscribe((message) => {
       console.log(message)
       this.messages.push(message)
     })
-    this.chat.getMessages(this.username, this.contact.name).subscribe((ele:any) => {
+    this.chat.getMessages(this.user.id, this.contact.id).subscribe((ele:any) => {
       console.log(ele)
       if(ele != null){
         let msg:[] = ele.messages
@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit {
                text: element.text,
                date: new Date(),
                files: element.files,
-               reply: element.user.name ==  this.username? true : false,
+               reply: element.user.name ==  this.user.username? true : false,
 
                user: {
                  name: element.user.name,
@@ -67,7 +67,7 @@ export class ChatComponent implements OnInit {
       type: files.length ? 'file' : 'text',
       files: files,
       user: {
-        name: this.username,
+        name: this.user.username,
         avatar: 'https://i.gifer.com/no.gif',
         receiver: this.contact.name
       },
@@ -75,14 +75,14 @@ export class ChatComponent implements OnInit {
     this.chat.sendMessage({
       text: event.message,
       date: new Date(),
-      reply: this.contact.name ==  this.username? true:false,
+      reply: this.contact.name ==  this.user.username? true:false,
       type: files.length ? 'file' : 'text',
       files: files,
       user: {
-        name: this.username,
+        name: this.user.username,
         avatar: 'https://i.gifer.com/no.gif',
         receiver:  this.contact.name
       },
-    })
+    },this.user._id,this.contact.id)
   }
 }

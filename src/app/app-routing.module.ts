@@ -45,7 +45,8 @@ export const routes: Routes = [
       },
       {
         path: 'register',
-        component: NbRegisterComponent,
+        redirectTo:'car-owner/register'
+       // component: NbRegisterComponent,
       },
       {
         path: 'logout',

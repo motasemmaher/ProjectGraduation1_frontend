@@ -34,5 +34,5 @@
 </div>
 
 <div class="chat" *ngIf="isLogin">
-    <app-Chat [contact]="contactSelected" [ContactsList]="usernames" [username]="user.user.username" *ngIf="IscontactSelected"></app-Chat>
+    <app-Chat [contact]="contactSelected" [ContactsList]="contacts" [user]="user.user" *ngIf="IscontactSelected"></app-Chat>
 </div>
