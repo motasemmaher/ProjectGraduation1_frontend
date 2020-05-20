@@ -1,0 +1,38 @@
+<nb-card>
+    <nb-tabset>
+        <nb-tab tabTitle="Store Information">
+            <div>
+                <nb-card>
+                    <table class="table table-borderless" style="color: white;">
+                        <tr>
+                            <th scope="row"> Store name:</th>
+                            <td scope="col">{{storeInfo.name}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Location:</th>
+                            <td scope="col"> {{storeInfo.location}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Image:</th>
+                            <td scope="col"> <img [src]="storeInfo.image" class="img-fluid rounded" alt="..." width="50%" height="50%">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Description:</th>
+                            <td scope="col" style="width: 90%;">
+                                <p> {{storeInfo.description}}</p>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <button class="btn btn-primary text-white" role="button" (click)="onStartChat()">Start Chat</button>
+
+                </nb-card>
+            </div>
+        </nb-tab>
+        <nb-tab tabTitle="Product">
+            <app-Card [data]="products"></app-Card>
+
+        </nb-tab>
+    </nb-tabset>
+</nb-card>

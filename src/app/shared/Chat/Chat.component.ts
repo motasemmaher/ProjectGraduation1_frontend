@@ -10,9 +10,9 @@ import { element } from 'protractor';
   styleUrls: ['./Chat.component.css']
 })
 export class ChatComponent implements OnInit {
-  @Input() contact: { name: string, title: string };
-  @Input() ContactsList: [];
-  @Input() username: string;
+  @Input() contact: { name: string, title: string,id:string };
+  @Input() ContactsList: any[];
+  @Input() user: any;
 
   messages: any = [];
   constructor(private chat: ChatService) {
@@ -20,26 +20,32 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.chat.getLiveMessage(this.ContactsList).subscribe((message) => {
+    this.chat.getLiveMessage(this.ContactsList,this.user).subscribe((message) => {
       console.log(message)
       this.messages.push(message)
     })
-    this.chat.getMessages(this.username, this.contact.name).subscribe((ele:any) => {
-      let msg:[] = ele.messages
-     // console.log(ele.messages)
-     msg.forEach((element:any) => {
-        this.messages.push(
-          {
-            text: element.text,
-            date: new Date(),
-            files: element.files,
-            user: {
-              name: element.user.name,
-              avatar: element.user.avatar,
-            }
-  
-          })
-      });
+    this.chat.getMessages(this.user.id, this.contact.id).subscribe((ele:any) => {
+      console.log(ele)
+      if(ele != null){
+        let msg:[] = ele.messages
+        // console.log(ele.messages)
+        msg.forEach((element:any) => {
+           this.messages.push(
+             {
+               text: element.text,
+               date: new Date(),
+               files: element.files,
+               reply: element.user.name ==  this.user.username? true : false,
+
+               user: {
+                 name: element.user.name,
+                 avatar: element.user.avatar,
+                 receiver:element.user.receiver
+               }
+     
+             })
+         });
+      }
     })
   }
   setContact(contact: any) {
@@ -57,23 +63,26 @@ export class ChatComponent implements OnInit {
     this.messages.push({
       text: event.message,
       date: new Date(),
-      reply: event.reply,
+      reply: !event.reply,
       type: files.length ? 'file' : 'text',
       files: files,
       user: {
-        name: this.contact.name,
+        name: this.user.username,
+        avatar: 'https://i.gifer.com/no.gif',
+        receiver: this.contact.name
       },
     });
     this.chat.sendMessage({
       text: event.message,
       date: new Date(),
-      reply: false,
-    //  type: files.length ? 'file' : 'text',
+      reply: this.contact.name ==  this.user.username? true:false,
+      type: files.length ? 'file' : 'text',
       files: files,
       user: {
-        name: this.contact.name,
+        name: this.user.username,
         avatar: 'https://i.gifer.com/no.gif',
+        receiver:  this.contact.name
       },
-    })
+    },this.user._id,this.contact.id)
   }
 }

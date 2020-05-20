@@ -3,7 +3,7 @@ import { NbMenuService } from '@nebular/theme';
 import { filter, map } from 'rxjs/operators';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router'
-import { UserApiService } from '../Services/userApi.service';
+import { UserApiService } from '../Services/user/userApi.service';
 import {ChatComponent} from '../shared/Chat/Chat.component'
 @Component({
   selector: 'app-Header',
@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   dropDownMenu = false
   imagePath = "assets/image/3185382.jpg"
   user: any = {};
-  contacts: { name: string,title:string }[] = []
+  contacts: { name: string,title:string,id:string }[] = []
   ListOfContacts = []
   IsopenContact = false
   isLogin: any = false
@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(title => {
         if (title == 'Logout') {
           this.router.navigate(['/auth/logout'])
+          this.IscontactSelected = false;
         }
       });
     this.authService.onTokenChange()
@@ -61,11 +62,11 @@ export class HeaderComponent implements OnInit {
         }
       });
       
-    this.userApi.getContact(this.user.user.username).pipe().subscribe((conts: any) => {
+    this.userApi.getContact(this.user._id).pipe().subscribe((conts: any) => {
       console.log(conts[0])
-      this.usernames = conts[0].username
-      this.usernames.forEach(element => {
-        this.contacts.push({name:element,title:"motasemKing..."})
+      let cons = conts[0].contacts
+      cons.forEach(element => {
+        this.contacts.push({name:element.name,title:"Store",id:element._id})
 
       });
     })

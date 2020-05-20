@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomePageComponent} from './HomePage/HomePage.component'
-import { RegisterComponent } from './Register/Register.component';
+import { HomePageComponent } from './HomePage/HomePage.component'
+import { RegisterGarageOwner } from "./RegisterGarageOwner/RegisterGarageOwner.component";
+import { RegisterCarOwner } from "./RegisterCarOwner/RegisterCarOwner.component";
 
 import {
   NbAuthComponent,
@@ -15,11 +16,14 @@ import {
 export const routes: Routes = [
   // ... 
   {
-    path:'homepage',
-    component:HomePageComponent
+    path: 'homepage',
+    component: HomePageComponent
   },
   {
-    
+    path: 'store', loadChildren: () => import('./store/store.module').then(m => m.StoreModule) 
+  },
+  {
+
     path: 'auth',
     component: NbAuthComponent,
     children: [
@@ -28,12 +32,21 @@ export const routes: Routes = [
       //   component: LoginComponent,
       // },
       {
+        path: 'garage-owner/register',
+        component: RegisterGarageOwner
+      },
+      {
+        path: 'car-owner/register',
+        component: RegisterCarOwner
+      },
+      {
         path: 'login',
         component: NbLoginComponent,
       },
       {
         path: 'register',
-        component: NbRegisterComponent,
+        redirectTo:'car-owner/register'
+       // component: NbRegisterComponent,
       },
       {
         path: 'logout',
