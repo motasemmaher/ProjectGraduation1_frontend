@@ -4,7 +4,7 @@ import { filter, map } from 'rxjs/operators';
 import { NbAuthJWTToken, NbAuthService } from '@nebular/auth';
 import { Router } from '@angular/router'
 import { UserApiService } from '../Services/user/userApi.service';
-import {ChatComponent} from '../shared/Chat/Chat.component'
+import { ChatComponent } from '../shared/Chat/Chat.component'
 @Component({
   selector: 'app-Header',
   templateUrl: './Header.component.html',
@@ -19,12 +19,12 @@ export class HeaderComponent implements OnInit {
   dropDownMenu = false
   imagePath = "assets/image/3185382.jpg"
   user: any = {};
-  contacts: { name: string,title:string,id:string }[] = []
+  contacts: { name: string, title: string, id: string }[] = []
   ListOfContacts = []
   IsopenContact = false
   isLogin: any = false
   username = "guest"
-  contactSelected:any = {}
+  contactSelected: any = {}
   IscontactSelected = false
   items = [
     { title: 'Profile' },
@@ -36,7 +36,17 @@ export class HeaderComponent implements OnInit {
   }
   diplayContacts($event) {
     event.stopPropagation();
-    this.IsopenContact = !this.IsopenContact
+    this.IsopenContact = !this.IsopenContact;
+    if (this.IsopenContact) {
+      this.contacts = []
+      this.userApi.getContact(this.user.user.id).pipe().subscribe((conts: any) => {
+        let cons = conts.contacts
+        cons.forEach(element => {
+          this.contacts.push({ name: element.name, title: "Store", id: element._id })
+
+        });
+      })
+    }
   }
   usernames = []
   ngOnInit() {
@@ -61,18 +71,11 @@ export class HeaderComponent implements OnInit {
           this.isLogin = false
         }
       });
-      
-    this.userApi.getContact(this.user._id).pipe().subscribe((conts: any) => {
-      console.log(conts[0])
-      let cons = conts[0].contacts
-      cons.forEach(element => {
-        this.contacts.push({name:element.name,title:"Store",id:element._id})
 
-      });
-    })
+
   }
 
-  ngClickScreen(){
+  ngClickScreen() {
     this.IsopenContact = false;
   }
   toggleNavbar() {
@@ -81,8 +84,8 @@ export class HeaderComponent implements OnInit {
   toggleDropDown() {
     this.dropDownMenu = !this.dropDownMenu
   }
-  openchat(contact){
-    this.IsopenContact = false;  
+  openchat(contact) {
+    this.IsopenContact = false;
     this.contactSelected = contact;
     this.IscontactSelected = true;
   }

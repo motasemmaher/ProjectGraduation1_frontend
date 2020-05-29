@@ -17,7 +17,7 @@ export class UserApiService {
   url = "http://localhost:4445/user/"
 
   getContact(ownusernameId: string): Observable<any> {
-    return this.http.get(this.url + "v-contact/" + ownusernameId).pipe(catchError(this.error))
+    return this.http.get(this.url + "contact/get/" + ownusernameId).pipe(catchError(this.error))
   }
 
   

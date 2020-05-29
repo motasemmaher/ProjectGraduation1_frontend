@@ -15,20 +15,19 @@ export class ChatService {
   public sendMessage(message,userId,contactID) {
     if (userId > contactID) {
       this.socket.emit(userId + "-" + contactID, message);
-
     } else {
       this.socket.emit(contactID + "-" + userId, message);
     }
   }
 
-  public getLiveMessage = (contacts,user): Observable<any> => {   
+  public getLiveMessage = (contacts,user): Observable<any> => {  
     return Observable.create((observer) => {
       contacts.forEach(element => {
         let chatbetweem = ""
-        if (user._id > element.id) {
-          chatbetweem = user._id + "-" + element.id
+        if (user.id > element.id) {
+          chatbetweem = user.id + "-" + element.id
         } else {
-          chatbetweem = element.id + "-" + user._id
+          chatbetweem = element.id + "-" + user.id
         }
         this.socket.on(chatbetweem, (message) => {
           observer.next(message);
@@ -38,7 +37,7 @@ export class ChatService {
   }
 
   getMessages(userId,contactID) {
-    let url ="http://localhost:4445/user/chat/"+contactID+"/"+userId
+    let url ="http://localhost:4445/user/chat/"+userId+"/"+contactID
     return this.http.get(url)
 
   }

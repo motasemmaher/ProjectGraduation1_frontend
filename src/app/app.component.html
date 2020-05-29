@@ -2,13 +2,13 @@
 
     <nb-layout-header fixed style="width: 100%;">
         <nb-icon icon="menu" class="sidebar m-3" (click)="toggleSideBar()"></nb-icon>
+        <a routerLink="/homepage" class="mr-3"><img src="./../assets/image/logo.png" alt="" width="100px"></a>
         <app-Header style="width: 100%;"></app-Header>
     </nb-layout-header>
 
 
     <nb-layout-column>
         <router-outlet></router-outlet>
-        <!-- <app-HomePage ></app-HomePage> -->
     </nb-layout-column>
 
     <nb-sidebar [state]="type" class="Dsidebar">

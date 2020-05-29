@@ -9,41 +9,26 @@ nb-card {
     border: none !important;
 }
 
-table {
+
+/* table {
     border-collapse: collapse;
     width: 100%;
-}
+} */
 
+
+/* .store
 th,
-td {
+.store td {
     padding: 8px;
     text-align: left;
     border-bottom: 2px solid#151A30;
-}
-
-.card {
-    background-color: transparent !important;
-    border: none;
-    margin-left: 2%;
-}
-
-:host /deep/ .flip-button {
-    color: white;
-    z-index: 0;
-    margin-bottom: 20%;
-}
-
-.cardside {
-    height: 92% !important;
-}
-
-.cards {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-}
+} */
 
 a {
     text-decoration: none;
+}
+
+.product {
+    background-color: #151A30;
+    border: 1px solid #222B45;
 }

@@ -11,13 +11,12 @@ export  class AppComponent implements OnInit{
   title = 'BumperToBumper';
   type = "collapsed"
   open = false
-
   ngOnInit(){
 
    }
 
   constructor() {
-   
+    
   }
   toggleSideBar(){
     this.open = !this.open

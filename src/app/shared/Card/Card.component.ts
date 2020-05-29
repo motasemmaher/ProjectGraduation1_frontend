@@ -1,6 +1,8 @@
-import { Component, OnInit,Input,Pipe } from '@angular/core';
-import { Router } from '@angular/router'
-
+import { Component, OnInit, Input, Pipe } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from '../../../model/Product';
+import { NbDialogService } from '@nebular/theme';
+import { ShowcaseDialogComponentComponent } from '../showcase-dialog-component/showcase-dialog-component.component'
 
 @Component({
   selector: 'app-Card',
@@ -9,14 +11,27 @@ import { Router } from '@angular/router'
 })
 export class CardComponent implements OnInit {
 
-  constructor(private router:Router) { }
-  @Input()data :[];
+  constructor(private router: Router, private dialogService: NbDialogService) { }
+  @Input() data: any[];
 
   ngOnInit() {
   }
 
-  onViewStore(storeId){
-    this.router.navigateByUrl(`/store/${storeId}`)
+  onView(id) {
+    // tslint:disable-next-line: triple-equals
+    if (this.data[0].type == 'product') {
+      this.dialogService.open(ShowcaseDialogComponentComponent, {
+        context: {
+          data: {
+            title: this.data[id].name,
+            description: this.data[id].description,
+            image: this.data[0].image
+          },
+        },
+      });
+    } else {
+      this.router.navigateByUrl(`/store/${this.data[id].id}`);
+    }
   }
 
 

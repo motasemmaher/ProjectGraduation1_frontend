@@ -13,7 +13,6 @@ export class StoreComponent implements OnInit {
   }[] = []
   constructor(private api: StoreAPIService) {
     this.api.getStores().subscribe((stores:any) => {
-      console.log(stores)
       stores.stores.forEach((element:any) => {
         this.stores.push({
           name: element.name,

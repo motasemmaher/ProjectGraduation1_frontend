@@ -25,4 +25,7 @@ export class RegisterGarageOwner extends NbAuthComponent implements OnInit {
       }
     })
   }
+
+  onMaxLine($event){
+  }
 }
