@@ -1,0 +1,20 @@
+<div>
+    <nb-card>
+        <nb-card-header>{{ data.title }}</nb-card-header>
+        <nb-card-body>
+            <img [src]="data.image" class="card-img-top" alt="...">
+            <p>
+                {{ data.description }}
+            </p>
+            <div class="container" class="bar">
+                <label class="label" for="quantity" class="m-2">Quantity:</label>
+                <input [(ngModel)]="value" _ngcontent-hcv-c265="" type="range" min="0" max="30" step="1" class="progress">
+                <input nbInput [(ngModel)]="value" type="number" class="ml-2" id="quantity" min="1" max="30">
+            </div>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="success" class="btn">Add To Shopping Cart</button>
+            <button nbButton status="danger" (click)="close()" class="btn">Canncel</button>
+        </nb-card-footer>
+    </nb-card>
+</div>

@@ -1,0 +1,27 @@
+.btn {
+    margin-left: 20px;
+}
+
+div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nb-card {
+    width: 50%;
+    position: fixed;
+}
+
+img {
+    height: 250px;
+    width: 500px;
+    margin-bottom: 10px;
+    align-self: center;
+}
+
+.bar {
+    width: 100%;
+    padding: 10px;
+}

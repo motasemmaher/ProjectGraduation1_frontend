@@ -1,0 +1,25 @@
+<nb-layout style="position: relative;">
+
+    <nb-layout-header fixed style="width: 100%;">
+        <nb-icon icon="menu" class="sidebar m-3" (click)="toggleSideBar()"></nb-icon>
+        <a routerLink="/business/homepage" class="mr-3"><img src="./../assets/image/logo.png" alt="" width="50px"></a>
+        <buttoN [nbContextMenu]="items">XCXCZCCX</buttoN>
+        <app-header style="width: 100%;"></app-header>
+
+
+    </nb-layout-header>
+
+
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+    <nb-sidebar [state]="type" class="Dsidebar">
+        <app-SideBar></app-SideBar>
+    </nb-sidebar>
+
+    <nb-layout-footer fixed>
+        <!-- Insert footer here -->
+    </nb-layout-footer>
+
+</nb-layout>

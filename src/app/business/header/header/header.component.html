@@ -1,0 +1,38 @@
+<div class="row header">
+    <div class="screen" (click)="ngClickScreen()" *ngIf="IsopenContact"></div>
+
+    <div class="Search">
+        <nb-search type="rotate-layout" class="search"></nb-search>
+    </div>
+    <div class="row rightside">
+        <div class="login" *ngIf="!isLogin">
+            <a routerLink="/business/store" (click)="login()" class="btn btn-primary text-white" role="button">Login</a>
+        </div>
+        <div class="row" *ngIf="isLogin">
+            <div class="icon">
+                <a (click)="diplayContacts($event)"> <i class="fas fa-comment-alt mr-3 mt-3"></i></a>
+                <i class="fas fa-bell mr-5 mt-3"></i>
+                <div *ngIf="IsopenContact" class="ListContacts">
+                    <nb-card size="small">
+                        <nb-list>
+                            <nb-list-item *ngFor="let contact of contacts" (click)="openchat(contact)">
+                                <nb-user [name]="contact.name" [title]="contact.title">
+                                </nb-user>
+                            </nb-list-item>
+                        </nb-list>
+                    </nb-card>
+                </div>
+            </div>
+            <div class="User">
+                <div class="row mr-auto ">
+                    <nb-user [name]="username" [nbContextMenu]="items" nbContextMenuTag="my-context-menu1" [picture]="imagePath">
+                    </nb-user>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chat" *ngIf="isLogin">
+    <app-Chat [contact]="contactSelected" [ContactsList]="contacts" [user]="user.user" *ngIf="IscontactSelected"></app-Chat>
+</div>
