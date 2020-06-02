@@ -1,0 +1,36 @@
+.card {
+    background-color: transparent !important;
+    border: none;
+    overflow: hidden;
+    margin-left: 0.1rem;
+}
+
+:host /deep/ .flip-button {
+    color: white;
+    z-index: 0;
+    margin-bottom: 20%;
+}
+
+.cardside {
+    height: 92% !important;
+}
+
+.cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding-top: 0.5rem;
+}
+
+p {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+img {
+    height: 160px;
+    width: 240px;
+}

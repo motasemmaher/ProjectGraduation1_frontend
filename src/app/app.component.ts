@@ -1,4 +1,4 @@
-import { Component,OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,24 +7,13 @@ import { Component,OnInit} from '@angular/core';
 })
 
 
-export  class AppComponent implements OnInit{ 
+export  class AppComponent implements OnInit{
   title = 'BumperToBumper';
-  type = "collapsed"
-  open = false
-  ngOnInit(){
-
-   }
-
+  items = [
+    { title: 'Log out', data: { id: 'logout' } },
+  ];
   constructor() {
-    
   }
-  toggleSideBar(){
-    this.open = !this.open
-    console.log(this.open)
-    if(this.open){
-      this.type = "expanded"
-    }else{
-      this.type = "collapsed"
-    }
-  }
+  ngOnInit(){
+   }
 }

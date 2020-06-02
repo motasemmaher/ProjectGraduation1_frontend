@@ -28,7 +28,6 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/themes.scss"
-
             ],
             "scripts": []
           },
@@ -126,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "upmyride"
+  "defaultProject": "upmyride",
+  "cli": {
+    "analytics": false
+  }
 }
