@@ -3,9 +3,12 @@
         <nb-card-header>{{ data.title }}</nb-card-header>
         <nb-card-body>
             <img [src]="data.image" class="card-img-top" alt="...">
-            <p>
-                {{ data.description }}
-            </p>
+            <h4>
+                Price: {{data.price}}
+            </h4>
+            <span>
+                <h5>Description: </h5> {{ data.description }}
+            </span>
             <div class="container" class="bar">
                 <label class="label" for="quantity" class="m-2">Quantity:</label>
                 <input [(ngModel)]="value" _ngcontent-hcv-c265="" type="range" min="0" max="30" step="1" class="progress">

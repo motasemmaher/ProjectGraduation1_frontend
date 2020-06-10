@@ -41,8 +41,8 @@ export class HeaderComponent implements OnInit {
     if (this.IsopenContact) {
       this.contacts = [];
       this.userApi.getContact(this.user.user.id).pipe().subscribe((conts: any) => {
-        const cons = conts.contacts;
-        cons.forEach(element => {
+        const cons = conts?.contacts;
+        cons?.forEach(element => {
           this.contacts.push({ name: element.name, title: 'Store', id: element._id });
         });
       });
@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   login(){
-    this.router.navigateByUrl(`/business/store/`);
+    this.router.navigateByUrl(`/auth/login`);
   }
 
 }

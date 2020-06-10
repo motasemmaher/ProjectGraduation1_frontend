@@ -16,12 +16,12 @@
                             <th>Email:</th>
                             <td> {{garageOwner.email}}</td>
                         </tr>
-                        <tr *ngIf="this.user.id != this.garageOwner.id && !isInContact && isLogin">
+                        <tr *ngIf="isLogin && this.user.id != this.garageOwner.id && !isInContact">
                             <th>Chat:</th>
                             <td> <button class="btn btn-primary text-white" role="button" (click)="onStartChat()">Start Chat</button>
                             </td>
                         </tr>
-                        <tr *ngIf="this.user.id != this.garageOwner.id && isInContact && isLogin">
+                        <tr *ngIf="isLogin && this.user.id != this.garageOwner.id && isInContact ">
                             <th>Chat:</th>
                             <td> chat already exists!
                             </td>

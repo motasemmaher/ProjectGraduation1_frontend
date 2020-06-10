@@ -44,7 +44,7 @@ import { BusinessModule } from '../business/business.module';
     RouterModule,
     NbMenuModule.forRoot(),
     NbSidebarModule.forRoot(), // NbSidebarModule.forRoot(), //if this is your app.module
-   // BusinessModule
+    BusinessModule
   ],
   providers: [
     NbThemeService,

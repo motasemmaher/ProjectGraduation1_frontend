@@ -7,7 +7,7 @@
                         <img [src]="element.image" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-white">{{element.name}}</h5>
-                            <p class="card-text text-white">{{element.price}}</p>
+                            <p *ngIf="element.price" class="card-text text-white">Price: {{element.price}}</p>
                             <button class="btn btn-primary text-white" (click)="onView(i)">{{element.btn}}</button>
                         </div>
                     </nb-card-body>

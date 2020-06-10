@@ -7,11 +7,7 @@ import { NbDialogRef } from '@nebular/theme';
 })
 export class ShowcaseDialogComponentComponent implements OnInit {
 
-  @Input() data: {
-    title: string,
-    description: string,
-    image: string
-  } = { title: 'dsdffasfds', description: 'none', image: '' };
+  @Input() data: any;
   value = 30;
 
   constructor(protected dialogRef: NbDialogRef<any>) { }

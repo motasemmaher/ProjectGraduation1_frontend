@@ -24,7 +24,8 @@ export class CardComponent implements OnInit {
           data: {
             title: this.data[id].name,
             description: this.data[id].description,
-            image: this.data[0].image
+            image: this.data[id].image,
+            price: this.data[id].price
           },
         },
       });
